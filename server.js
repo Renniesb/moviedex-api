@@ -3,7 +3,7 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
-const MOVIESTORE = require('/.movies-data-small.json')
+const MOVIESTORE = require('./movies-data-small.json')
 
 console.log(process.env.API_TOKEN)
 
@@ -25,15 +25,16 @@ app.use(function validateBearerToken(req, res, next){
 })
 
 app.get('/movie', (req, res)=>{
+    debugger
    let queryResponse = MOVIESTORE;
    if(req.query.genre){
     queryResponse = queryResponse.filter((movie)=>{
-        return movie.genre.toLowerCase().includes(req.query.genre.toLowerCase)
+        return movie.genre.toLowerCase().includes(req.query.genre.toLowerCase())
     })
    }
    if(req.query.country){
     queryResponse = queryResponse.filter((movie)=>{
-        return movie.country.toLowerCase().includes(req.query.country.toLowerCase)
+        return movie.country.toLowerCase().includes(req.query.country.toLowerCase())
     })
    }
    if(req.query.avg_vote){
